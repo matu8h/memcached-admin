@@ -1,0 +1,18 @@
+version: '2.1'
+services:
+ memcachedadmin:
+    container_name: memcachedadmin
+    build:
+      context: .
+    ports:
+      - "80"
+    volumes:
+      - ./app:/app
+    labels:
+      - "traefik.frontend.rule=Host:memcachedadmin.local"
+      - 'traefik.port=80'
+    
+networks:
+  default:
+    external:
+      name: traefik_hosts
